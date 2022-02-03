@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
+import Date from '../components/date';
 
 // this is static site generation (SSG)
 // always runs on server side 
@@ -28,9 +29,6 @@ export default function Home({ allPostsData }) {
         <p>
           (you can build a site lik ethis by following <a href="https://nextjs.org/learn">Vercel's Next.js tutorial</a>)
         </p>
-        <Link href="/posts/first-post">
-          <a>View first post</a>
-        </Link>
       </section>
 
       {/* Display posts data */}
@@ -39,11 +37,13 @@ export default function Home({ allPostsData }) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
+              <Link href={`/posts/${id}`}>
+                <a>{title}</a>
+              </Link>
               <br />
-              {id}
-              <br />
-              {date}
+              <small className={utilStyles.lightText}>
+                <Date dateString={date} />
+              </small>
             </li>
           ))}
         </ul>
