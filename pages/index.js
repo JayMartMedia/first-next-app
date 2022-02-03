@@ -4,6 +4,8 @@ import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
 
+// this is static site generation (SSG)
+// always runs on server side before rendering
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
   return {
